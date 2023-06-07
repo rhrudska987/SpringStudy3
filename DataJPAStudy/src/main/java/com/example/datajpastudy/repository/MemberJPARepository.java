@@ -40,5 +40,26 @@ public class MemberJPARepository {
         return em.createQuery("select m from Member m", Member.class).getResultList();
     }
 
+    public List<Member> findByUserNameAndAgeGreaterThen(String username, int age){
+        return em.createQuery("select m from Member m where m.username = :username and m.age > :age")
+                .setParameter("username", username)
+                .setParameter("age", age)
+                .getResultList();
+    }
+
+    public List<Member> findByPage(int age, int offset, int limit){
+        return em.createQuery("select m from Member  m where m.age = :age order by m.username desc")
+                .setParameter("age", age)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
+
+    public long totalCount(int age){
+        return em.createQuery("select count(m) from Member m where m.age = :age", Long.class)
+                .setParameter("age", age)
+                .getSingleResult();
+    }
+
 
 }

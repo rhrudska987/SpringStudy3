@@ -1,5 +1,6 @@
 package com.example.datajpastudy.repository;
 
+import com.example.datajpastudy.entity.Member;
 import com.example.datajpastudy.entity.Team;
 import org.springframework.stereotype.Repository;
 
